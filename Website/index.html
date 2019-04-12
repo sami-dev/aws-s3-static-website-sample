@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Password Generator</title>
+    <!--Project CSS -->
+    <link rel="stylesheet" href="css/Style.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!--Project JS -->
+    <link rel="stylesheet" href="js/site.js">
+    <!-- custom fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <!-- Latest compiled and minified CSS -->
+    <style>
+        .center {
+            margin: auto;
+            width: 50%;
+            border: 3px solid green;
+            padding: 10px;
+        }
+    </style>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script>
+        String.prototype.pick = function (min, max) {
+            var n, chars = '';
+
+            if (typeof max === 'undefined') {
+                n = min;
+            } else {
+                n = min + Math.floor(Math.random() * (max - min + 1));
+            }
+
+            for (var i = 0; i < n; i++) {
+                chars += this.charAt(Math.floor(Math.random() * this.length));
+            }
+
+            return chars;
+        };
+
+        function genPwd(pwdField) {
+            var specials = '!#@%';
+            var lowercase = 'abcdefghijklmnopqrstuvwxyz';
+            var uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            var numbers = '0123456789';
+
+            var all = lowercase + uppercase + numbers;
+
+            var password = '';
+            password += uppercase.pick(1);
+            password += lowercase.pick(1);
+            password += numbers.pick(1);
+            password += all.pick(1);
+            password += all.pick(1);
+            password += all.pick(1);
+            password += all.pick(1);
+            password += all.pick(1);
+            password += all.pick(1);
+            password += specials.pick(1);
+            //password = password.shuffle();
+            pwdField.value = password;
+            return;
+        }
+
+        function copyVal(pwdField) {
+            var copyText = pwdField;
+
+            /* Select the text field */
+            copyText.select();
+
+            /* Copy the text inside the text field */
+            document.execCommand("copy");
+
+            /* Alert the copied text */
+            //alert("Copied the text: " + copyText.value);
+        }
+    </script>
+</head>
+<body id="page-top">
+
+    <!-- Header -->
+    <header class="masthead d-flex">
+        <div class="container text-center my-auto">
+            <h1 class="mb-1">Password Generator</h1>
+            <h3 class="mb-5">
+                <em>Generates a 10 characters long password</em>
+            </h3>
+            <div class="center input-group mb-3">
+                <input type="text" id="pwd" readonly="readonly" class="form-control" aria-label="Password">
+                <div class="input-group-append">
+                    <button class="btn btn-default" onclick="copyVal(document.getElementById('pwd'))">Copy</button>
+                </div>
+            </div>
+            <p>&nbsp;</p>
+            <button class="btn btn-primary btn-lg" onclick="genPwd(document.getElementById('pwd'))">Generate Password</button>
+        </div>
+    </header>    
+    <script>
+        genPwd(document.getElementById('pwd'));
+    </script>
+</body>
+</html>
