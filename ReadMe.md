@@ -1,44 +1,48 @@
-# Static Website Hosting on Amazon S3
+# Static Website Hosting on AWS S3
 
-Amazon Simple Storage Service (Amazon S3) can be used to host static Websites without a need for a Web server. S3 buckets can be used to host the HTML files for entire static websites.
+AWS Simple Storage Service (AWS S3) can be used to host static Websites without a need for a Web server. S3 buckets can be used to host the HTML files for entire static websites.
+
+A website is static when the system services used to render web pages and scripts are all client rather than server-based.
 
 You can start by creating an Amazon S3 bucket, enabling the Amazon S3 Website hosting feature, and configuring access permissions for the bucket. After you have uploaded files and setup Website, Amazon S3 takes care of serving your content to your visitors.
 
-You also need to configure Amazon Route 53, a managed Domain Name System (DNS) service to point your domain to your Amazon S3 bucket.
+**Amazon Route 53**: You can also use Amazon Route 53 (a managed Domain Name System (DNS) service) to point your domain to your Amazon S3 bucket.
+
+**Amazon CloudFront**: You can also use Amazon CloudFront to enable your website to load quickly. Amazon CloudFront will create a content delivery network (CDN) that hosts your website content in close proximity to your users.
+
+<br/>
+<img src="Documentation/Images/S3WebsiteHosting-Architecture.PNG" alt="S3 Static Website Hosting"/>
+
 
 ## Advantages of Hosting Website on S3
 
 Here are some of the advantages of hosting site on S3
 
-### Performance
+* **Performance**: The website will be highly performant and scalable at a fraction of the cost of a traditional Web server.
 
-The website will be highly performant and scalable at a fraction of the cost of a traditional Web server.
+* **Scalability**: Amazon S3 is inherently scalable. For popular websites, the Amazon S3 architecture will scale seamlessly to serve thousands of HTTP requests per second without any changes to the architecture.
 
-### Scalability and Availability
-
-Amazon S3 is inherently scalable. For popular websites, the Amazon S3 architecture will scale seamlessly to serve thousands of HTTP requests per second without any changes to the architecture.
-
-In addition, by hosting with Amazon S3, the website is inherently highly available.
+* **Availability**: In addition, by hosting with Amazon S3, the website is inherently highly available.
  
 
 ## Deployment Instructions
 
 Below are the steps to setup static Website on Amazon S3. Open AWS Management console. Select S3 under Storage.
 
-### Create an S3 Bucket
+### Step 1 - Create an S3 Bucket
 
 When you first create an S3 bucket, you select the AWS Region in which the files will be geographically stored.
 
-Click on "Create Bucket" button.
+* Click on "Create Bucket" button.
 
-Provide a globally unique name for bucket and select Region. 
+* Provide a globally unique name for bucket and select Region. 
 
-Leave blank this field "Copy Settings from an existing bucket".
+* Leave blank this field "Copy Settings from an existing bucket".
 
 <br/>
 <img src="Documentation/Images/Step1-CreateBucket.PNG" alt="Create Bucket"/>
 
-### Upload Content of Website
+### Step 2 - Upload Content of Website
 
 Upload the website contents to your S3 bucket including sub-folders.
 
@@ -46,7 +50,7 @@ Upload the website contents to your S3 bucket including sub-folders.
 <img src="Documentation/Images/Step2-UploadContents.PNG" alt="Upload Contents"/>
 
 
-### Add a Bucket Policy to Allow Public Reads
+### Step 3 - Add a Bucket Policy to Allow Public Reads
 
 Go to Permissions Tab --> Update Public Access Setting:
 
@@ -80,7 +84,7 @@ Click 'Save' button to save changes.
 <br/>
 <img src="Documentation/Images/Step3-BucketPolicy-B.PNG" alt="Create Bucket Policy"/>
 
-### Enable Website Hosting
+### Step 4 - Enable Website Hosting
 In order to serve assets via url, you need to enable Website Hosting
 
 Go to Properties and enable "Static Website Hosting" option
@@ -95,7 +99,7 @@ http://{bucket-name}.s3-website-us-east-1.amazonaws.com
 <br/>
 <img src="Documentation/Images/Step4-B.PNG" alt="Enable Website Hosting"/>
 
-### Validation
+### Step 5 - Access Your Website (Validation)
 
 Access the site in browser:
 http://{bucket-name}.s3-website-us-east-1.amazonaws.com
@@ -105,3 +109,12 @@ For Example:
 
 <br/>
 <img src="Documentation/Images/SampleWebsite.PNG" alt="Sample Static Website"/>
+
+## References
+
+* [Hosting a Static Website on Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html) 
+* [How to Host a Website on S3 Without Getting Lost in the Sear](https://medium.freecodecamp.org/how-to-host-a-website-on-s3-without-getting-lost-in-the-sea-e2b82aa6cd38)
+
+## Authors
+
+* **Sami Abdul**
