@@ -1,8 +1,9 @@
-# Static Website Hosting on Amazon S3
+# How to host Static Website on Amazon S3
 
-Amazon Simple Storage Service (Amazon S3) can be used to host static Websites without a need for a Web server. S3 buckets can be used to host the HTML files for entire static websites.
+Amazon Simple Storage Service (Amazon S3) can be used to host static Websites without a need for a Web server (at an extremely low cost). S3 buckets can be used to host the HTML, CSS and JavaScript files for entire static websites.
 
-A website is static when the system services used to render web pages and scripts are all client rather than server-based.
+## Introduction
+A website is static when the system services used to render web pages and scripts are all client rather than server-based. On the other hand, a dynamic website relies on server-side processing, including server-side scripts such as PHP, JSP, or ASP.NET
 
 Most websites are becoming static websites which means they run zero server side code and consist of only HTML, CSS and JavaScript. With no server side code to run, there is no reason to host them on a traditional server.
 
@@ -26,10 +27,18 @@ Here are some of the advantages of hosting site on S3
 
 * **Availability**: In addition, by hosting with Amazon S3, the website is inherently highly available.
  
+## Prerequisites
 
-## Deployment Instructions
+An AWS account
 
-Below are the steps to setup static Website on Amazon S3. Open AWS Management console. Select S3 under Storage.
+<br/>
+<img src="Documentation/Images/AWS-Free.PNG" alt="S3 Static Website Hosting"/>
+
+## Set-Up Instructions
+
+Below are the steps to deploy static Website on Amazon S3. You can follow these instructions to deploy your own static Website.
+
+Open AWS Management console. Select S3 under Storage.
 
 ### Step 1 - Create an S3 Bucket
 
@@ -44,15 +53,23 @@ When you first create an S3 bucket, you select the AWS Region in which the files
 <br/>
 <img src="Documentation/Images/Step1-CreateBucket.PNG" alt="Create Bucket"/>
 
-### Step 2 - Upload Content of Website
+### Step 2 - Upload Content of your Website
 
 Upload the website contents to your S3 bucket including sub-folders.
+
+For Example:
+You can use sample Website "Website" folder contents (provided in this repository).
+
+* index.html
+* error.html
+* css
+* images
 
 <br/>
 <img src="Documentation/Images/Step2-UploadContents.PNG" alt="Upload Contents"/>
 
 
-### Step 3 - Add a Bucket Policy to Allow Public Reads
+### Step 3 - Add a Bucket Policy to allow Public Read Access
 
 Go to Permissions Tab and update Public Access Setting:
 
@@ -92,8 +109,7 @@ In order to serve assets via url, you need to enable Website Hosting
 Go to Properties and enable "Static Website Hosting" option
 
 Note the endpoint.
-For Example:
-http://{bucket-name}.s3-website-us-east-1.amazonaws.com
+http://{bucket-name}.s3-website-{AWS-Region}.amazonaws.com
 
 <br/>
 <img src="Documentation/Images/Step4-A.PNG" alt="Enable Website Hosting"/>
@@ -101,10 +117,10 @@ http://{bucket-name}.s3-website-us-east-1.amazonaws.com
 <br/>
 <img src="Documentation/Images/Step4-B.PNG" alt="Enable Website Hosting"/>
 
-### Step 5 - Access Your Website (Validation)
+### Step 5 - Access Your Website (Testing/Validation)
 
 Access the site in browser:
-http://{bucket-name}.s3-website-us-east-1.amazonaws.com
+http://{bucket-name}.s3-website-{AWS-Region}.amazonaws.com
 
 For Example:
 <a href="http://pwdgen.s3-website-us-east-1.amazonaws.com/">http://pwdgen.s3-website-us-east-1.amazonaws.com/</a>
@@ -118,6 +134,7 @@ For Example:
 * [Hosting a Static Website on Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html) 
 * [Example Walkthroughs - Hosting Websites on Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/hosting-websites-on-s3-examples.html)
 * [How to Host a Website on S3 Without Getting Lost in the Sear](https://medium.freecodecamp.org/how-to-host-a-website-on-s3-without-getting-lost-in-the-sea-e2b82aa6cd38)
+* [Setup AWS S3 static website hosting using SSL](https://medium.com/@sbuckpesch/setup-aws-s3-static-website-hosting-using-ssl-acm-34d41d32e394)
 
 ## Authors
 
