@@ -29,7 +29,7 @@ Here are some of the advantages of hosting site on S3
  
 ## Prerequisites
 
-An AWS account
+* An AWS account
 
 <br/>
 <img src="Documentation/Images/AWS-Free.PNG" alt="S3 Static Website Hosting"/>
